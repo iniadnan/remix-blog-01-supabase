@@ -6,7 +6,7 @@ export default function About() {
             <Navbar />
             <main className="w-full pt-10 md:pt-14 pb-10 md:pb-20">
                 <div className="container mx-auto px-5 w-full md:w-[800px] lg:w-[1000px]">
-                    <h1 className="font-semibold text-xl md:text-3xl text-gray-700 mb-5">Hello It's Create Next App</h1>
+                    <h1 className="font-semibold text-xl md:text-3xl text-gray-700 mb-5">Hello It's Create Remix App</h1>
                     <img className="w-full" src="/images/about.jpg" alt="About" width="1200" height="1200" />
                     <div className="text-base md:text-lg text-gray-600 mt-8">
                         <p className="indent-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p><br />
