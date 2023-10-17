@@ -7,22 +7,23 @@ interface Post {
     slug: string,
     author: string,
     created_at: string,
-    handleDelete: (slug: string) => void
+    // handleDelete: (slug: string) => void
 }
 
 const ArticleCard: React.FC<Post> = (props) => {
 
-    const { title, synopsis, slug, handleDelete } = props;
+    const { title, synopsis, slug } = props;
+    // const { title, synopsis, slug, handleDelete } = props;
 
-    const onHandleDelete = (slug: string) => {
-        handleDelete(slug)
-    }
+    // const onHandleDelete = (slug: string) => {
+    //     handleDelete(slug)
+    // }
 
     return (
         <article className="relative bg-gray-50 hover:bg-gray-100 border rounded-lg py-3 px-5">
             <button
                 type="button"
-                onClick={() => onHandleDelete(slug)}
+                // onClick={() => onHandleDelete(slug)}
                 className="absolute top-0 right-0 bg-red-600 py-2 px-2 rounded text-gray-50 z-10"
             >
                 <svg
