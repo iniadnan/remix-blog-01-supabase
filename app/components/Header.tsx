@@ -1,4 +1,16 @@
-export default function Header() {
+import { useState } from 'react';
+
+export default function Header(props: { onChangeValue: (event: React.ChangeEvent<HTMLInputElement>) => void }) {
+
+    const { onChangeValue } = props
+
+    const [search, setSearch] = useState<string>("")
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setSearch(event.target.value)
+        onChangeValue(event)
+    }
+
     return (
         <header className="w-full pt-10 md:pt-14 pb-5 md:pb-10">
             <div className="container mx-auto px-5">
@@ -12,7 +24,7 @@ export default function Header() {
                                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
-                        <input type="search" id="default-search"
+                        <input type="search" id="default-search" onChange={handleChange} value={search}
                             className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Search Article" required />
                         <button type="submit"
