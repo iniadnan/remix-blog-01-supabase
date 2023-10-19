@@ -3,7 +3,7 @@ import Navbar from "~/components/Navbar";
 export default function About() {
     return (
         <>
-            <Navbar />
+            <Navbar newPost={false} />
             <main className="w-full pt-10 md:pt-14 pb-10 md:pb-20">
                 <div className="container mx-auto px-5 w-full md:w-[800px] lg:w-[1000px]">
                     <h1 className="font-semibold text-xl md:text-3xl text-gray-700 mb-5">Hello It's Create Remix App</h1>

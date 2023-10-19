@@ -1,9 +1,12 @@
 import SUPABASE from "~/api/supabaseClient"
-import type { MetaFunction } from "@remix-run/node";
+import type { MetaFunction, ActionFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import { redirect } from "@remix-run/node";
 import Header from "~/components/Header";
 import Navbar from "~/components/Navbar";
+import ModalForm from "~/components/ModalForm";
 import ArticleCard from "~/components/ArticleCard";
+import { useState } from "react";
 
 interface Posts {
   title: string,
@@ -36,11 +39,45 @@ export const loader = async () => {
   }
 };
 
+export async function action({
+  request,
+}: ActionFunctionArgs) {
+  const formData = await request.formData();
+  const postData = Object.fromEntries(formData)
+
+  try {
+    const { error } = await SUPABASE.from('posts').insert({
+      title: postData.title,
+      synopsis: postData.synopsis,
+      slug: postData.slug,
+      author: postData.author,
+      text: postData.text
+    })
+
+    if (error !== null) {
+      throw error
+    }
+
+    return redirect('/');
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 export default function Index() {
   const posts = useLoaderData<Posts[]>();
+  const [isShowModal, setIsShowModal] = useState<boolean>(false)
+
+  const appHandleModal = () => {
+    setIsShowModal(!isShowModal)
+  }
+
+  const cancelModal = () => {
+    setIsShowModal(!isShowModal)
+  }
   return (
     <>
-      <Navbar />
+      <Navbar navHandleModal={appHandleModal} newPost={true} />
       <Header />
       <main className="w-full md:pt-10 pb-10">
         <div className="container mx-auto px-5 w-full md:w-[900px] lg:w-[1200px]">
@@ -51,6 +88,7 @@ export default function Index() {
           </div>
         </div>
       </main>
+      <ModalForm modalShow={isShowModal} closeModal={cancelModal} />
     </>
   );
 }

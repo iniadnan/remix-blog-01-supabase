@@ -35,7 +35,7 @@ export default function Blog() {
     const post = useLoaderData<Post>();
     return (
         <>
-            <Navbar />
+            <Navbar newPost={false} />
             <main className="pt-20 mx-auto w-full md:w-8/12">
                 <h1 className="font-medium text-3xl text-gray-800 mb-5">{post.title}</h1>
                 <p className="text-xl text-gray-800 mb-5">{post.text}</p>
